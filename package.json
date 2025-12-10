@@ -2,7 +2,7 @@
   "name": "pyosh-obsidian-server",
   "version": "0.0.1",
   "description": "A lightweight Express server to support Obsidian plugin integration.",
-  "main": "dist/index.js",
+  "main": "build/index.js",
   "scripts": {
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "build": "tsc",
