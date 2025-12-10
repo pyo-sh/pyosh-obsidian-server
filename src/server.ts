@@ -1,4 +1,6 @@
 import express, { Express } from "express";
+import path from "path";
+import { webRouter } from "@src/api/web";
 import { helmetMiddleware } from "@src/middleware/helmet";
 import rateLimiterMiddleware from "@src/middleware/rateLimiter";
 
@@ -10,9 +12,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(helmetMiddleware);
 app.use(rateLimiterMiddleware);
 
-// Routes
+// Static Route
+app.use("/", express.static(path.join(__dirname, "public")));
 
-// Frontend route
-app.use("/", express.static("public"));
+// Frontend Routes
+app.use("/", webRouter);
+
+// Routes
 
 export { app };
