@@ -1,7 +1,6 @@
 import express, { Express } from "express";
-import helmet from "helmet";
-import rateLimiterMiddleware from "@src/middleware/rateLimiter";
 import { helmetMiddleware } from "@src/middleware/helmet";
+import rateLimiterMiddleware from "@src/middleware/rateLimiter";
 
 const app: Express = express();
 
