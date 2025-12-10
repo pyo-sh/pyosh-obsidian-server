@@ -37,7 +37,12 @@ const getEnv = () => {
     throw new Error(errorMessage);
   }
 
-  return { ...result.data };
+  return {
+    ...result.data,
+    isDev: result.data.NODE_ENV === "development",
+    isProd: result.data.NODE_ENV === "production",
+    isTest: result.data.NODE_ENV === "test",
+  };
 };
 
 export const env = getEnv();
