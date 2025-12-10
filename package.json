@@ -4,8 +4,8 @@
   "description": "A lightweight Express server to support Obsidian plugin integration.",
   "main": "build/index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon --watch 'src/**/*.ts' --exec 'ts-node -r tsconfig-paths/register' src/index.ts",
-    "build": "tsc",
+    "dev": "cross-env NODE_ENV=development nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "build": "tsc && tsc-alias",
     "start": "cross-env NODE_ENV=production node build/index.js",
     "lint": "eslint . --ext .ts"
   },
@@ -34,6 +34,7 @@
     "nodemon": "^3.1.11",
     "prettier": "^3.7.4",
     "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.16",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.9.3"
   }
