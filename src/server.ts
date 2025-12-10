@@ -13,7 +13,7 @@ app.use(helmetMiddleware);
 app.use(rateLimiterMiddleware);
 
 // Static Route
-app.use("/", express.static(path.join(__dirname, "public")));
+app.use("/", express.static(path.join(__dirname, "..", "public")));
 
 // Frontend Routes
 app.use("/", webRouter);
