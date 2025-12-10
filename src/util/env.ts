@@ -23,6 +23,8 @@ export const envSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]).default("production"),
   HOST: z.string().min(1).prefault("localhost"),
   PORT: z.coerce.number().int().positive().prefault(3000),
+  RATE_LIMIT_WINDOW_MS: z.coerce.number().int().positive(),
+  RATE_LIMIT_MAX: z.coerce.number().int().positive(),
 });
 
 const getEnv = () => {
@@ -39,5 +41,3 @@ const getEnv = () => {
 };
 
 export const env = getEnv();
-
-console.log(env);

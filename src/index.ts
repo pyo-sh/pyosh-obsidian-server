@@ -1,12 +1,7 @@
 import express, { Request, Response } from "express";
 import { env } from "@util/env";
+import { app } from "@src/server";
 
-const app = express();
-
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
-});
-
-app.listen(env.PORT, () => {
+app.listen(env.PORT, env.HOST, () => {
   console.log(`Server started on ${env.HOST}:${env.PORT}`);
 });
