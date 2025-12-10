@@ -1,5 +1,9 @@
 node_modules
 build
-.env
 .DS_Store
 .vscode
+
+# Environment files
+.env
+.production.env
+.test.env

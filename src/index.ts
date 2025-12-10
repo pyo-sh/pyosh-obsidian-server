@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import { env } from "@util/env";
 
 const app = express();
 
@@ -6,8 +7,6 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
 
-const APP_PORT = 3000;
-
-app.listen(APP_PORT, () => {
-  console.log(`Server started on port ${APP_PORT}`);
+app.listen(env.PORT, () => {
+  console.log(`Server started on ${env.HOST}:${env.PORT}`);
 });
