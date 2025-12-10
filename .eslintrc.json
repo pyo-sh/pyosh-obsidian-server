@@ -1,0 +1,21 @@
+{
+  "root": true,
+  "env": { "node": true },
+  "extends": [
+    "eslint-config-pyosh",
+    "eslint-config-pyosh/typescript",
+    "eslint-config-pyosh/prettier"
+  ],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": ["./tsconfig.json"],
+        "sourceType": "module"
+      }
+    }
+  },
+  "rules": {}
+}
