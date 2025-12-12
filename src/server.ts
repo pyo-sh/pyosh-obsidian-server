@@ -1,8 +1,9 @@
 import express, { Express } from "express";
 import path from "path";
-import { webRouter } from "@src/api/web";
+import { apiRouter } from "@src/api";
 import { helmetMiddleware } from "@src/middleware/helmet";
 import rateLimiterMiddleware from "@src/middleware/rateLimiter";
+import { webRouter } from "@src/web/router";
 
 const app: Express = express();
 
@@ -19,5 +20,6 @@ app.use("/", express.static(path.join(__dirname, "..", "public")));
 app.use("/", webRouter);
 
 // Routes
+app.use("/api", apiRouter);
 
 export { app };

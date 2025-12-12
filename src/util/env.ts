@@ -25,6 +25,10 @@ export const envSchema = z.object({
   PORT: z.coerce.number().int().positive().prefault(3000),
   RATE_LIMIT_WINDOW_MS: z.coerce.number().int().positive(),
   RATE_LIMIT_MAX: z.coerce.number().int().positive(),
+  GOOGLE_CLIENT_ID: z.string().min(1),
+  GOOGLE_CLIENT_SECRET: z.string().min(1),
+  GOOGLE_REDIRECT_URI: z.string().min(1),
+  SESSION_SECRET: z.string().min(1),
 });
 
 const getEnv = () => {
