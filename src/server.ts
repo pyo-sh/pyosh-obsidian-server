@@ -3,7 +3,7 @@ import path from "path";
 import { apiRouter } from "@src/api";
 import { helmetMiddleware } from "@src/middleware/helmet";
 import rateLimiterMiddleware from "@src/middleware/rateLimiter";
-import { webRouter } from "@src/web/router";
+import { viewRouter } from "@src/view";
 
 const app: Express = express();
 
@@ -17,7 +17,7 @@ app.use(rateLimiterMiddleware);
 app.use("/", express.static(path.join(__dirname, "..", "public")));
 
 // Frontend Routes
-app.use("/", webRouter);
+app.use("/", viewRouter);
 
 // Routes
 app.use("/api", apiRouter);
