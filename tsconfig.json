@@ -12,7 +12,7 @@
     "skipLibCheck": true
   },
   "include": ["./**/*.js", "src/**/*.ts", "test/**/*.ts"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "build", "vite.config.ts", "front/**/*"],
   "ts-node": {
     "require": ["tsconfig-paths/register"]
   }

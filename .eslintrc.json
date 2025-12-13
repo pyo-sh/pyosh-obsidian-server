@@ -1,6 +1,6 @@
 {
   "root": true,
-  "env": { "node": true },
+  "env": { "browser": true, "es2021": true, "node": true },
   "extends": [
     "eslint-config-pyosh",
     "eslint-config-pyosh/typescript",
@@ -12,10 +12,30 @@
   "settings": {
     "import/resolver": {
       "typescript": {
-        "project": ["./tsconfig.json"],
+        "project": ["./tsconfig.json", "./front/tsconfig.json"],
         "sourceType": "module"
       }
     }
   },
-  "rules": {}
+  "ignorePatterns": ["vite.config.ts"],
+  "rules": {},
+  "overrides": [
+    {
+      "files": [
+        "front/**/*.ts",
+        "front/**/*.tsx",
+        "front/**/*.js",
+        "front/**/*.jsx"
+      ],
+      "parserOptions": {
+        "project": "./front/tsconfig.json"
+      }
+    },
+    {
+      "files": ["src/**/*.ts"],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      }
+    }
+  ]
 }

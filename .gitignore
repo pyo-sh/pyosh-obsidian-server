@@ -1,5 +1,4 @@
 node_modules
-build
 .DS_Store
 .vscode
 
@@ -7,3 +6,7 @@ build
 .env
 .production.env
 .test.env
+
+# Build output
+build
+/public/views
