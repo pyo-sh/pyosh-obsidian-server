@@ -18,7 +18,7 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: join(__dirname, "/front/index.html"),
+        main: join(__dirname, "/front/page/index.html"),
       },
       output: {
         entryFileNames: "js/[name].bundle.js",

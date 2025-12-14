@@ -1,10 +1,13 @@
 import express, { Express } from "express";
 import path from "path";
 import { apiRouter } from "@src/api";
-import { frontMiddleware } from "@src/middleware/front";
+import {
+  frontMiddleware,
+  frontRouter,
+  viewRouter,
+} from "@src/middleware/front";
 import { helmetMiddleware } from "@src/middleware/helmet";
 import rateLimiterMiddleware from "@src/middleware/rateLimiter";
-import { viewRouter } from "@src/view";
 
 const app: Express = express();
 
@@ -18,11 +21,13 @@ app.use(rateLimiterMiddleware);
 app.use("/", express.static(path.join(__dirname, "..", "public")));
 
 // Frontend Routes
-// 개발 모드에서 Front Vite 미들웨어 추가
+// In Dev: Front Vite middleware
+const viewPaths = ["/"];
 if (process.env.NODE_ENV === "development") {
+  app.use(viewPaths, frontRouter);
   app.use("/", frontMiddleware);
 } else {
-  app.use("/", viewRouter);
+  app.use(viewPaths, viewRouter);
 }
 
 // Routes
