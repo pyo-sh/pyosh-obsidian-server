@@ -1,0 +1,36 @@
+.footer {
+  background-color: var(--surface);
+  border-top: 1px solid var(--border-color);
+  padding: 2rem;
+  margin-top: auto;
+  transition: all 0.3s ease;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.footer-container p {
+  margin: 0.5rem 0;
+}
+
+.footer-source {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.footer-source a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-source a:hover {
+  color: var(--text-secondary);
+  text-decoration: underline;
+}
