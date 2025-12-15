@@ -2,6 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@page/*": ["./page/*"],
+      "@script/*": ["./script/*"],
+      "@style/*": ["./style/*"],
       "@front/*": ["./*"]
     }
   }
