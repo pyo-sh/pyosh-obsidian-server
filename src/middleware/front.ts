@@ -1,6 +1,9 @@
 import type { Request, Response, NextFunction } from "express";
+import { readFileSync } from "fs";
 import path from "path";
+import type { ViteDevServer } from "vite";
 
+let vite: ViteDevServer | null = null;
 let viteMiddleware:
   | ((req: Request, res: Response, next: NextFunction) => void)
   | null = null;
@@ -9,7 +12,7 @@ async function initVite() {
   if (viteMiddleware) return;
 
   const { createServer } = await import("vite");
-  const vite = await createServer({
+  vite = await createServer({
     server: { middlewareMode: true },
   });
   console.log("Development: Vite server ON!");
@@ -38,15 +41,31 @@ export const frontRouter = async (
   next: NextFunction,
 ) => {
   try {
-    const page = req.params.page ?? "index";
+    const url = req.originalUrl;
+    const page = url === "/" ? "index" : url.slice(1);
     /**
      * / → front/page/index.html
      * /others → front/page/others.html
      */
-    const filePath = path.posix.join("page", `${page}.html`);
+    const filePath = path.posix.join(
+      __dirname,
+      "../../front/page",
+      `${page}.html`,
+    );
 
-    // Vite dev server middleware will handle the request
-    req.url = `/${filePath}`;
+    if (vite) {
+      let template = readFileSync(filePath, {
+        encoding: "utf-8",
+      });
+      template = await vite.transformIndexHtml(req.originalUrl, template);
+
+      return res
+        .status(200)
+        .set({ "Content-Type": "text/html" })
+        .send(template);
+    }
+    next(new Error("Vite middleware is not initialized."));
+
     next();
   } catch (e) {
     next(e);
@@ -58,7 +77,8 @@ export const viewRouter = async (
   res: Response,
   next: NextFunction,
 ) => {
-  const page = req.params.page ?? "index";
+  const url = req.originalUrl;
+  const page = url === "/" ? "index" : url.slice(1);
   const filePath = path.join(__dirname, "../public/views", `${page}.html`);
 
   res.sendFile(filePath, (err) => {
