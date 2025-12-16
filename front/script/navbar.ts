@@ -1,3 +1,5 @@
+import "@style/navbar.css";
+
 const themeToggleBtn = document.getElementById("themeToggle");
 const html = document.documentElement;
 
