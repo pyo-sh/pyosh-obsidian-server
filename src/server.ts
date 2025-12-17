@@ -8,6 +8,7 @@ import {
 } from "@src/middleware/front";
 import { helmetMiddleware } from "@src/middleware/helmet";
 import rateLimiterMiddleware from "@src/middleware/rateLimiter";
+import { sessionMiddleware } from "@src/middleware/session";
 
 const app: Express = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmetMiddleware);
 app.use(rateLimiterMiddleware);
+app.use(sessionMiddleware);
 
 // Static Route
 app.use("/", express.static(path.join(__dirname, "..", "public")));
