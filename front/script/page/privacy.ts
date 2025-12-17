@@ -1,6 +1,5 @@
-import "@style/index.css";
-import "@style/main.css";
+import "@style/app.css";
 import "@style/warning.css";
 import "@style/footer.css";
 import "@style/privacy.css";
-import "@script/navbar";
+import "@script/common/navbar";

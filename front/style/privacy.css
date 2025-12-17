@@ -1,6 +1,4 @@
-/* 개인정보 처리방침 페이지 스타일 */
-
-.privacy-content {
+.main-content {
   max-width: 900px;
   margin: 0 auto;
   padding: 3rem 2rem 4rem;
@@ -321,7 +319,6 @@
   }
 }
 
-/* 인쇄 스타일 */
 @media print {
   .navbar,
   .footer,
@@ -356,7 +353,6 @@
   }
 }
 
-/* 애니메이션 줄이기 설정 존중 */
 @media (prefers-reduced-motion: reduce) {
   .privacy-section {
     animation: none;

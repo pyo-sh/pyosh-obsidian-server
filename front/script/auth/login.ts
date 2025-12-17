@@ -1,4 +1,4 @@
-export function initGoogleLogin() {
+function initGoogleLogin() {
   const googleLoginBtn = document.getElementById("googleLoginBtn");
 
   if (!googleLoginBtn) {
@@ -8,7 +8,7 @@ export function initGoogleLogin() {
   }
 
   googleLoginBtn.addEventListener("click", () => {
-    window.location.href = "/auth/google";
+    window.location.href = "/api/auth/google";
   });
 }
 
@@ -39,3 +39,5 @@ export function checkAuthError() {
     errorMessage.style.display = "none";
   }, 5000);
 }
+
+initGoogleLogin();
