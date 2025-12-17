@@ -20,6 +20,9 @@ app.use(rateLimiterMiddleware);
 // Static Route
 app.use("/", express.static(path.join(__dirname, "..", "public")));
 
+// Routes
+app.use("/api", apiRouter);
+
 // Frontend Routes
 // In Dev: Front Vite middleware
 const viewPaths = ["/", "/privacy-policy"];
@@ -29,8 +32,5 @@ if (process.env.NODE_ENV === "development") {
 } else {
   app.use(viewPaths, viewRouter);
 }
-
-// Routes
-app.use("/api", apiRouter);
 
 export { app };
