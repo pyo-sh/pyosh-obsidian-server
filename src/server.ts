@@ -27,7 +27,7 @@ app.use("/api", apiRouter);
 
 // Frontend Routes
 // In Dev: Front Vite middleware
-const viewPaths = ["/", "/privacy-policy"];
+const viewPaths = ["/", "/privacy-policy", "/dashboard"];
 if (process.env.NODE_ENV === "development") {
   app.use(viewPaths, frontRouter);
   app.use("/", frontMiddleware);

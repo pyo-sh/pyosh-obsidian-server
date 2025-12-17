@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pyosh's Plugin</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/images/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/images/favicon-32x32.png"
+    />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#736599" />
+
+    <meta name="description" content="Pyosh's Plugin Service Web App" />
+  </head>
+  <body>
+    <div id="app">
+      <nav class="navbar">
+        <div class="nav-container">
+          <a class="logo" href="/" target="_self" rel="bookmark">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              version="1.1"
+              id="logo-light"
+              x="0px"
+              y="0px"
+              viewBox="0 0 256 256"
+              style="enable-background: new 0 0 256 256"
+              xml:space="preserve"
+              width="40"
+              height="40"
+            >
+              <g>
+                <path
+                  class="st0"
+                  d="M169.85,181.57c-0.32-0.11-0.78-0.07-1.29-0.15c-0.62-0.06-0.62-0.06-1.2-0.06c-3.19-0.04-5.81,3.65-6.28,6.62   c-0.59,3.76,2.06,5.59,5.49,5.78C173.89,194.16,177.57,184.34,169.85,181.57z"
+                />
+                <path
+                  class="st0"
+                  d="M128,30.81c-53.67,0-97.19,43.52-97.19,97.19c0,31.18,14.69,58.93,37.53,76.72   c13.82-23.13,29.59-49.69,41.98-70.3c-18.12-15.67-30.87-37.86-40.59-60.59c-1.79-4.18,2.26-13.74,6.37-16.22   c3.5-2.11,5.62,3.36,7.56,7.59c8.92,19.45,19.83,40.08,35.26,54.47l31.97-54.8c1.8-3.09,4.75-4.55,7.69-4.24   c1.69,0.12,3.21,0.55,4.92,1.65c14.53,9.41,25.4,24.78,29.28,42.43c3.51,15.99,2.05,34.39-11.95,44.16   c-13.72,9.57-32.44,6.65-46.86,0.48c-2.94-1.26-5.76-2.66-8.49-4.21c0,0.01-26.37,44.06-41.59,69.48   c13.24,6.76,28.24,10.58,44.13,10.58c53.67,0,97.19-43.52,97.19-97.19S181.67,30.81,128,30.81z M185.65,191.94   c-2.42,9.22-11.36,14.6-20.61,13.68c-9.71-0.97-17.06-8.57-15.87-18.61c1.07-9.06,8.7-17.66,18.2-17.66c0.86,0,1.78-0.08,3.28,0   c1.13,0.19,1.13,0.19,2.4,0.64C181.44,173.01,188.84,179.76,185.65,191.94z"
+                />
+                <path
+                  class="st0"
+                  d="M172.67,134.12c6.04-4.71,6.21-13.25,5.33-20.48c-1.49-12.13-7.33-23.29-15.9-31.31l-28.18,48.3   c5.07,2.77,10.54,4.9,16.47,6.22C157.57,138.45,166.42,138.99,172.67,134.12z"
+                />
+                <path
+                  class="st1"
+                  d="M128,10.39C63.05,10.39,10.39,63.05,10.39,128c0,38.63,18.63,72.9,47.39,94.34c0,0,0,0,0,0   c0,0,0.02,0.02,0.05,0.04c4.9,3.65,10.09,6.92,15.54,9.78c0,0,0,0,0,0v0c16.33,8.58,34.91,13.44,54.63,13.44   c64.95,0,117.61-52.66,117.61-117.61S192.95,10.39,128,10.39z M128,225.19c-15.89,0-30.89-3.81-44.13-10.58   c15.21-25.42,41.58-69.47,41.59-69.48c2.73,1.54,5.56,2.95,8.49,4.21c14.42,6.18,33.14,9.1,46.86-0.48   c14.01-9.77,15.47-28.17,11.95-44.16c-3.87-17.65-14.75-33.02-29.28-42.43c-1.71-1.11-3.23-1.53-4.92-1.65   c-2.94-0.3-5.88,1.15-7.69,4.24l-31.97,54.8c-15.43-14.39-26.34-35.01-35.26-54.47c-1.94-4.23-4.06-9.7-7.56-7.59   c-4.11,2.47-8.16,12.04-6.37,16.22c9.72,22.73,22.47,44.92,40.59,60.59c-12.39,20.61-28.16,47.18-41.98,70.3   C45.5,186.93,30.81,159.18,30.81,128c0-53.67,43.52-97.19,97.19-97.19s97.19,43.52,97.19,97.19S181.67,225.19,128,225.19z    M133.92,130.63l28.18-48.3c8.56,8.02,14.41,19.18,15.9,31.31c0.89,7.23,0.72,15.77-5.33,20.48c-6.25,4.87-15.1,4.33-22.27,2.74   C144.46,135.54,138.99,133.4,133.92,130.63z"
+                />
+                <path
+                  class="st1"
+                  d="M173.04,170c-1.26-0.45-1.26-0.45-2.4-0.64c-1.5-0.08-2.43,0-3.28,0c-9.5,0-17.13,8.6-18.2,17.66   c-1.19,10.04,6.17,17.64,15.87,18.61c9.25,0.92,18.2-4.46,20.61-13.68C188.84,179.76,181.44,173.01,173.04,170z M166.57,193.75   c-3.42-0.19-6.08-2.02-5.49-5.78c0.47-2.97,3.09-6.66,6.28-6.62c0.58,0.01,0.58,0.01,1.2,0.06c0.51,0.08,0.98,0.04,1.29,0.15   C177.57,184.34,173.89,194.16,166.57,193.75z"
+                />
+              </g>
+            </svg>
+            <span>Pyosh Plugin</span>
+          </a>
+          <div class="nav-menu">
+            <a href="/" class="nav-link">홈</a>
+            <a href="/privacy-policy" class="nav-link">개인정보 처리방침</a>
+          </div>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="다크모드 전환"
+          >
+            <svg
+              class="sun-icon"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+            >
+              <circle
+                cx="10"
+                cy="10"
+                r="4"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            <svg
+              class="moon-icon"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+            >
+              <path
+                d="M17 10.5C16.3 13.5 13.5 16 10 16C6 16 3 13 3 9C3 5.5 5.5 2.7 8.5 2C7.9 2.6 7.5 3.5 7.5 4.5C7.5 6.7 9.3 8.5 11.5 8.5C12.5 8.5 13.4 8.1 14 7.5C14 8.2 14.5 9.5 17 10.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <main class="main-content">
+        <div class="success-section">
+          <div class="success-icon">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+              <circle
+                cx="40"
+                cy="40"
+                r="38"
+                stroke="currentColor"
+                stroke-width="4"
+              />
+              <path
+                d="M25 40L35 50L55 30"
+                stroke="currentColor"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <h1 class="success-title">로그인 성공!</h1>
+          <p class="success-description">Google 계정 인증이 완료되었습니다.</p>
+
+          <div class="token-section">
+            <h2 class="token-title">액세스 토큰</h2>
+            <p class="token-description">
+              아래 토큰을 복사하여 사용하세요. 보안을 위해 안전하게 보관하세요.
+            </p>
+
+            <div class="token-container">
+              <div class="token-content" id="tokenContent">
+                <code id="accessToken">로딩 중...</code>
+              </div>
+              <button class="copy-button" id="copyTokenBtn" title="토큰 복사">
+                <svg
+                  class="copy-icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                >
+                  <rect
+                    x="7"
+                    y="7"
+                    width="11"
+                    height="11"
+                    rx="1"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M4 13H3C2.44772 13 2 12.5523 2 12V3C2 2.44772 2.44772 2 3 2H12C12.5523 2 13 2.44772 13 3V4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                </svg>
+                <svg
+                  class="check-icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  style="display: none"
+                >
+                  <path
+                    d="M4 10L8 14L16 6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span class="copy-text">복사</span>
+              </button>
+            </div>
+
+            <div class="token-warning">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <circle
+                  cx="10"
+                  cy="10"
+                  r="8"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M10 6V10M10 14H10.01"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <p>
+                이 토큰은 외부에 노출되지 않도록 주의하세요. 토큰이 유출되면
+                즉시 Google 계정에서 앱 권한을 취소하세요.
+              </p>
+            </div>
+
+            <div
+              class="refresh-token-section"
+              id="refreshTokenSection"
+              style="display: none"
+            >
+              <h3 class="token-subtitle">리프레시 토큰</h3>
+              <div class="token-container">
+                <div class="token-content">
+                  <code id="refreshToken">-</code>
+                </div>
+                <button
+                  class="copy-button"
+                  id="copyRefreshTokenBtn"
+                  title="리프레시 토큰 복사"
+                >
+                  <svg
+                    class="copy-icon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                  >
+                    <rect
+                      x="7"
+                      y="7"
+                      width="11"
+                      height="11"
+                      rx="1"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <path
+                      d="M4 13H3C2.44772 13 2 12.5523 2 12V3C2 2.44772 2.44772 2 3 2H12C12.5523 2 13 2.44772 13 3V4"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                  </svg>
+                  <svg
+                    class="check-icon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    style="display: none"
+                  >
+                    <path
+                      d="M4 10L8 14L16 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span class="copy-text">복사</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <a href="/" class="secondary-button">메인 페이지로</a>
+            <button class="primary-button" id="revokeBtn">권한 취소하기</button>
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-container">
+          <p>&copy; 2025. pyo-sh. all rights reserved.</p>
+          <p class="footer-source">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <path
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+              />
+            </svg>
+            <a
+              href="https://github.com/pyo-sh/pyosh-obsidian-server"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub에서 소스코드 보기
+            </a>
+          </p>
+          <p class="footer-source">
+            <a href="/privacy-policy" target="self" rel="bookmark">
+              Privacy Policy
+            </a>
+          </p>
+        </div>
+      </footer>
+    </div>
+    <script type="module" src="../script/dashboard.ts"></script>
+  </body>
+</html>

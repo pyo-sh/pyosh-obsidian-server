@@ -20,6 +20,7 @@ export default defineConfig({
       input: {
         main: join(__dirname, "/front/page/index.html"),
         "privacy-policy": join(__dirname, "/front/page/privacy-policy.html"),
+        dashboard: join(__dirname, "/front/page/dashboard.html"),
       },
       output: {
         entryFileNames: "js/[name].bundle.js",
