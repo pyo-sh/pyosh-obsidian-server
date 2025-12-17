@@ -77,17 +77,4 @@ tokenRouter.post(
   },
 );
 
-tokenRouter.post("/destroy", (req: Request, res: Response) => {
-  res.clearCookie(SESSION_NAME);
-  req.session.destroy((err) => {
-    if (err) {
-      console.error("Session destruction error:", err);
-
-      return res.status(500).json({ error: "server_error" });
-    }
-
-    return res.status(200);
-  });
-});
-
 export { tokenRouter };

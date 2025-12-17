@@ -17,6 +17,8 @@ export const SESSION_NAME = "pyoshs";
 export const sessionMiddleware = session({
   store: new FileStore({
     path: path.join(__dirname, "../../sessions"),
+    ttl: 60 * 60, // 1 hour
+    retries: 2,
   }),
   secret: env.SESSION_SECRET,
   resave: false,
@@ -25,7 +27,7 @@ export const sessionMiddleware = session({
     httpOnly: true,
     secure: env.NODE_ENV === "production",
     sameSite: "strict",
-    maxAge: 24 * 60 * 60 * 1000, // 1 day
+    maxAge: 30 * 60 * 1000, // 30 minutes
   },
   name: SESSION_NAME,
 });
