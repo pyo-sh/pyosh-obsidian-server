@@ -22,7 +22,7 @@ app.use("/", express.static(path.join(__dirname, "..", "public")));
 
 // Frontend Routes
 // In Dev: Front Vite middleware
-const viewPaths = ["/"];
+const viewPaths = ["/", "/privacy-policy"];
 if (process.env.NODE_ENV === "development") {
   app.use(viewPaths, frontRouter);
   app.use("/", frontMiddleware);

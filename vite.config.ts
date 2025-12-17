@@ -19,6 +19,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: join(__dirname, "/front/page/index.html"),
+        "privacy-policy": join(__dirname, "/front/page/privacy-policy.html"),
       },
       output: {
         entryFileNames: "js/[name].bundle.js",
