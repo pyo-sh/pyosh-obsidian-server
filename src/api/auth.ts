@@ -1,14 +1,6 @@
 import { Router } from "express";
 import { env } from "@util/env";
 
-declare module "express-session" {
-  interface SessionData {
-    accessToken: string;
-    refreshToken: string;
-    ip: string | undefined;
-  }
-}
-
 const authRouter = Router();
 
 authRouter.get("/google", (req, res) => {
@@ -29,7 +21,7 @@ authRouter.get("/google/callback", async (req, res) => {
   const { code } = req.query;
 
   if (!code) {
-    return res.redirect("/?error=no_code");
+    return res.redirect("/?message=no_code");
   }
 
   try {
@@ -52,7 +44,7 @@ authRouter.get("/google/callback", async (req, res) => {
     if (!tokenResponse.ok) {
       console.error("Token exchange failed:", tokenData);
 
-      return res.redirect("/?error=token_exchange_failed");
+      return res.redirect("/?message=token_exchange_failed");
     }
 
     req.session.accessToken = tokenData.access_token;
@@ -62,7 +54,7 @@ authRouter.get("/google/callback", async (req, res) => {
     res.redirect(`/dashboard`);
   } catch (error) {
     console.error("OAuth error:", error);
-    res.redirect("/?error=server_error");
+    res.redirect("/?message=server_error");
   }
 });
 

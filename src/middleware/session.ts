@@ -3,8 +3,17 @@ import path from "path";
 import SessionFileStore from "session-file-store";
 import { env } from "@util/env";
 
+declare module "express-session" {
+  interface SessionData {
+    accessToken: string | undefined;
+    refreshToken: string | undefined;
+    ip: string | undefined;
+  }
+}
+
 const FileStore = SessionFileStore(session);
 
+export const SESSION_NAME = "pyoshs";
 export const sessionMiddleware = session({
   store: new FileStore({
     path: path.join(__dirname, "../../sessions"),
@@ -18,5 +27,5 @@ export const sessionMiddleware = session({
     sameSite: "strict",
     maxAge: 24 * 60 * 60 * 1000, // 1 day
   },
-  name: "pyoshs",
+  name: SESSION_NAME,
 });
