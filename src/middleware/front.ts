@@ -1,87 +1,158 @@
 import type { Request, Response, NextFunction } from "express";
-import { readFileSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 import path from "path";
 import type { ViteDevServer } from "vite";
+import { env } from "@util/env";
+import { extractPageName, resolveHtmlPath } from "@util/url";
 
-let vite: ViteDevServer | null = null;
-let viteMiddleware:
-  | ((req: Request, res: Response, next: NextFunction) => void)
-  | null = null;
+class ViteService {
+  private vite: ViteDevServer | null = null;
+  private isInitializing = false;
+  private initPromise: Promise<void> | null = null;
 
-async function initVite() {
-  if (viteMiddleware) return;
+  async initialize(): Promise<void> {
+    if (this.vite) return;
 
-  const { createServer } = await import("vite");
-  vite = await createServer({
-    server: { middlewareMode: true },
-  });
-  console.log("Development: Vite server ON!");
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  viteMiddleware = vite.middlewares as any;
+    if (this.isInitializing && this.initPromise) {
+      return this.initPromise;
+    }
+
+    this.isInitializing = true;
+    this.initPromise = this.createViteServer();
+
+    try {
+      await this.initPromise;
+    } finally {
+      this.isInitializing = false;
+      this.initPromise = null;
+    }
+  }
+
+  getMiddleware() {
+    return this.vite?.middlewares;
+  }
+
+  async transformHtml(url: string, html: string): Promise<string> {
+    if (!this.vite) {
+      throw new Error("Vite is not initialized");
+    }
+
+    return this.vite.transformIndexHtml(url, html);
+  }
+
+  isReady(): boolean {
+    return this.vite !== null;
+  }
+
+  private async createViteServer(): Promise<void> {
+    const { createServer } = await import("vite");
+    this.vite = await createServer({
+      server: { middlewareMode: true },
+      appType: "custom",
+    });
+    console.log("✓ Development: Vite server initialized");
+  }
 }
-initVite();
 
-export async function frontMiddleware(
+const viteService = new ViteService();
+
+export async function viteDevMiddleware(
   req: Request,
   res: Response,
   next: NextFunction,
 ): Promise<void> {
-  await initVite();
+  try {
+    await viteService.initialize();
+    const middleware = viteService.getMiddleware();
 
-  if (viteMiddleware) {
-    viteMiddleware(req, res, next);
-  } else {
-    next(new Error("Vite middleware is not initialized."));
+    if (middleware) {
+      middleware(req, res, next);
+    } else {
+      next(new Error("Vite middleware is not available"));
+    }
+  } catch (error) {
+    console.error("Vite middleware error:", error);
+    next(error);
   }
 }
 
-export const frontRouter = async (
+export async function devHtmlRouter(
   req: Request,
   res: Response,
   next: NextFunction,
-) => {
+): Promise<void> {
   try {
-    const url = req.originalUrl;
-    const page = url === "/" ? "index" : url.slice(1);
-    /**
-     * / → front/page/index.html
-     * /others → front/page/others.html
-     */
-    const filePath = path.posix.join(
-      __dirname,
-      "../../front/page",
-      `${page}.html`,
+    await viteService.initialize();
+
+    if (!viteService.isReady()) {
+      throw new Error("Vite is not ready");
+    }
+
+    const page = extractPageName(req.originalUrl);
+    const htmlPath = resolveHtmlPath(
+      page,
+      path.join(__dirname, "../../front/page"),
     );
 
-    if (vite) {
-      let template = readFileSync(filePath, {
-        encoding: "utf-8",
-      });
-      template = await vite.transformIndexHtml(req.originalUrl, template);
-
-      return res
-        .status(200)
-        .set({ "Content-Type": "text/html" })
-        .send(template);
+    // 파일 존재 여부 확인
+    if (!existsSync(htmlPath)) {
+      return next();
     }
-    next(new Error("Vite middleware is not initialized."));
 
-    next();
-  } catch (e) {
-    next(e);
+    const template = readFileSync(htmlPath, "utf-8");
+    const transformedHtml = await viteService.transformHtml(
+      req.originalUrl,
+      template,
+    );
+
+    res
+      .status(200)
+      .set({ "Content-Type": "text/html; charset=utf-8" })
+      .send(transformedHtml);
+  } catch (error) {
+    console.error("Dev HTML router error:", error);
+    next(error);
   }
-};
+}
 
-export const viewRouter = async (
+export function prodHtmlRouter(
   req: Request,
   res: Response,
   next: NextFunction,
-) => {
-  const url = req.originalUrl;
-  const page = url === "/" ? "index" : url.slice(1);
-  const filePath = path.join(__dirname, "../public/views", `${page}.html`);
+): void {
+  try {
+    const page = extractPageName(req.originalUrl);
+    const htmlPath = resolveHtmlPath(
+      page,
+      path.join(__dirname, "../public/views"),
+    );
 
-  res.sendFile(filePath, (err) => {
-    if (err) next();
-  });
-};
+    if (!existsSync(htmlPath)) {
+      return next();
+    }
+
+    res.sendFile(htmlPath, (err) => {
+      if (err) {
+        console.error("Static HTML serve error:", err);
+        next();
+      }
+    });
+  } catch (error) {
+    console.error("Prod HTML router error:", error);
+    next(error);
+  }
+}
+
+export function getHtmlRouter() {
+  return env.isDev ? devHtmlRouter : prodHtmlRouter;
+}
+
+export function createViewMiddleware(paths: string[]) {
+  const htmlRouter = getHtmlRouter();
+
+  return {
+    paths,
+    router: htmlRouter,
+    viteMiddleware: env.isDev ? viteDevMiddleware : null,
+  };
+}

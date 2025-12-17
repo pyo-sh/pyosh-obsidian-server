@@ -1,14 +1,10 @@
 import express, { Express } from "express";
 import path from "path";
-import { apiRouter } from "@src/api";
-import {
-  frontMiddleware,
-  frontRouter,
-  viewRouter,
-} from "@src/middleware/front";
-import { helmetMiddleware } from "@src/middleware/helmet";
-import rateLimiterMiddleware from "@src/middleware/rateLimiter";
-import { sessionMiddleware } from "@src/middleware/session";
+import { apiRouter } from "@api/index";
+import { createViewMiddleware } from "@middleware/front";
+import { helmetMiddleware } from "@middleware/helmet";
+import rateLimiterMiddleware from "@middleware/rateLimiter";
+import { sessionMiddleware } from "@middleware/session";
 
 const app: Express = express();
 
@@ -26,13 +22,14 @@ app.use("/", express.static(path.join(__dirname, "..", "public")));
 app.use("/api", apiRouter);
 
 // Frontend Routes
-// In Dev: Front Vite middleware
 const viewPaths = ["/", "/privacy-policy", "/dashboard"];
-if (process.env.NODE_ENV === "development") {
-  app.use(viewPaths, frontRouter);
-  app.use("/", frontMiddleware);
-} else {
-  app.use(viewPaths, viewRouter);
+const viewMiddleware = createViewMiddleware(viewPaths);
+
+// In Dev: Front Vite middleware
+if (viewMiddleware.viteMiddleware) {
+  app.use("/", viewMiddleware.viteMiddleware);
 }
+
+app.use(viewMiddleware.paths, viewMiddleware.router);
 
 export { app };
