@@ -2,5 +2,10 @@ import "@style/app.css";
 import "@style/index.css";
 import "@style/warning.css";
 import "@style/footer.css";
-import "@script/auth/login";
-import "@script/common/navbar";
+import { setupGoogleLogin } from "@script/auth/login";
+import { checkAndDisplayMessage } from "@script/common/message";
+import { setupNavbar } from "@script/common/navbar";
+
+setupNavbar();
+setupGoogleLogin();
+checkAndDisplayMessage();

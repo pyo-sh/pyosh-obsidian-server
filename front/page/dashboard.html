@@ -189,29 +189,6 @@
                 <span class="copy-text">복사</span>
               </button>
             </div>
-
-            <div class="token-warning">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <circle
-                  cx="10"
-                  cy="10"
-                  r="8"
-                  stroke="currentColor"
-                  stroke-width="2"
-                />
-                <path
-                  d="M10 6V10M10 14H10.01"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-              </svg>
-              <p>
-                이 토큰은 외부에 노출되지 않도록 주의하세요. 토큰이 유출되면
-                즉시 Google 계정에서 앱 권한을 취소하세요.
-              </p>
-            </div>
-
             <div
               class="refresh-token-section"
               id="refreshTokenSection"
@@ -269,11 +246,42 @@
                 </button>
               </div>
             </div>
+
+            <div class="token-warning">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <circle
+                  cx="10"
+                  cy="10"
+                  r="8"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M10 6V10M10 14H10.01"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <p>
+                이 토큰은 외부에 노출되지 않도록 주의하세요. 토큰이 유출되면
+                즉시 Google 계정에서 앱 권한을 취소하세요.
+              </p>
+            </div>
           </div>
 
           <div class="action-buttons">
             <a href="/" class="secondary-button">메인 페이지로</a>
-            <button class="primary-button" id="revokeBtn">권한 취소하기</button>
+            <form
+              class="revoke-form"
+              action="/api/token/revoke"
+              method="POST"
+              id="revokeBtn"
+            >
+              <button class="primary-button" type="submit">
+                권한 취소하기
+              </button>
+            </form>
           </div>
         </div>
       </main>

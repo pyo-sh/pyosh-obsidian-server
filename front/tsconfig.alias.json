@@ -3,6 +3,10 @@
     "baseUrl": ".",
     "paths": {
       "@page/*": ["./page/*"],
+      "@api/*": ["./script/api/*"],
+      "@auth/*": ["./script/auth/*"],
+      "@common/*": ["./script/common/*"],
+      "@constant/*": ["./script/constant/*"],
       "@script/*": ["./script/*"],
       "@style/*": ["./style/*"],
       "@front/*": ["./*"]
