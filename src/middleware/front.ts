@@ -132,8 +132,9 @@ export function prodHtmlRouter(
     const page = extractPageName(req.originalUrl);
     const htmlPath = resolveHtmlPath(
       page,
-      path.join(__dirname, "../public/views"),
+      path.join(__dirname, "../../public/views/page"),
     );
+    logger.info(__dirname);
 
     if (!existsSync(htmlPath)) {
       return next();
