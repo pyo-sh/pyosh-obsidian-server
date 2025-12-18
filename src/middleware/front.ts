@@ -1,9 +1,15 @@
 import type { Request, Response, NextFunction } from "express";
 import { readFileSync, existsSync } from "fs";
 import path from "path";
+import pino from "pino";
 import type { ViteDevServer } from "vite";
 import { env } from "@util/env";
 import { extractPageName, resolveHtmlPath } from "@util/url";
+
+const logger = pino({
+  name: "Front middleware",
+  level: "info",
+});
 
 class ViteService {
   private vite: ViteDevServer | null = null;
@@ -50,7 +56,7 @@ class ViteService {
       server: { middlewareMode: true },
       appType: "custom",
     });
-    console.log("✓ Development: Vite server initialized");
+    logger.info("✓ Development: Vite server initialized");
   }
 }
 
@@ -70,8 +76,9 @@ export async function viteDevMiddleware(
     } else {
       next(new Error("Vite middleware is not available"));
     }
-  } catch (error) {
-    console.error("Vite middleware error:", error);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    logger.error("Vite middleware error:", error);
     next(error);
   }
 }
@@ -109,8 +116,9 @@ export async function devHtmlRouter(
       .status(200)
       .set({ "Content-Type": "text/html; charset=utf-8" })
       .send(transformedHtml);
-  } catch (error) {
-    console.error("Dev HTML router error:", error);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    logger.error("Dev HTML router error:", error);
     next(error);
   }
 }
@@ -133,12 +141,14 @@ export function prodHtmlRouter(
 
     res.sendFile(htmlPath, (err) => {
       if (err) {
-        console.error("Static HTML serve error:", err);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        logger.error("Static HTML serve error:", err as any);
         next();
       }
     });
-  } catch (error) {
-    console.error("Prod HTML router error:", error);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    logger.error("Prod HTML router error:", error);
     next(error);
   }
 }

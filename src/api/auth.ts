@@ -1,6 +1,11 @@
 import { Router } from "express";
+import pino from "pino";
 import { env } from "@util/env";
 
+const logger = pino({
+  name: "auth",
+  level: "error",
+});
 const authRouter = Router();
 
 authRouter.get("/google", (req, res) => {
@@ -42,7 +47,7 @@ authRouter.get("/google/callback", async (req, res) => {
     const tokenData = await tokenResponse.json();
 
     if (!tokenResponse.ok) {
-      console.error("Token exchange failed:", tokenData);
+      logger.error("/google/callback - Get token failed:", tokenData);
 
       return res.redirect("/?message=token_exchange_failed");
     }
@@ -51,10 +56,11 @@ authRouter.get("/google/callback", async (req, res) => {
     req.session.refreshToken = tokenData.refresh_token;
     req.session.ip = req.ip;
 
-    res.redirect(`/dashboard`);
+    return res.redirect(`/dashboard`);
   } catch (error) {
-    console.error("OAuth error:", error);
-    res.redirect("/?message=server_error");
+    logger.error("/google/callback - unexpected error");
+
+    return res.redirect("/?message=server_error");
   }
 });
 

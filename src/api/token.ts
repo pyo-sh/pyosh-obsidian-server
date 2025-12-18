@@ -5,8 +5,13 @@ import {
   NextFunction,
   RequestHandler,
 } from "express";
+import pino from "pino";
 import { SESSION_NAME } from "@middleware/session";
 
+const logger = pino({
+  name: "token",
+  level: "error",
+});
 const tokenRouter = Router();
 
 const validateTokenSession: RequestHandler = (
@@ -18,14 +23,14 @@ const validateTokenSession: RequestHandler = (
 
   // 세션 데이터 검증
   if (!accessToken || !refreshToken || !ip) {
-    console.error("Session validation error: No data in session");
+    logger.error("Session validation error: No data in session");
 
     return res.status(400).json({ error: "no_data" });
   }
 
   // IP 검증
   if (ip !== req.ip) {
-    console.error("Session validation error: IP mismatch");
+    logger.error("Session validation error: IP mismatch");
 
     return res.status(400).json({ error: "ip_mismatch" });
   }
@@ -35,7 +40,8 @@ const validateTokenSession: RequestHandler = (
 
 tokenRouter.get("/", validateTokenSession, (req: Request, res: Response) => {
   const { accessToken, refreshToken } = req.session;
-  res.json({ accessToken, refreshToken });
+
+  return res.json({ accessToken, refreshToken });
 });
 
 tokenRouter.post(
@@ -62,15 +68,16 @@ tokenRouter.post(
       res.clearCookie(SESSION_NAME);
       req.session.destroy((err) => {
         if (err) {
-          console.error("Session destruction error:", err);
+          logger.error("Session destroy error:", err);
 
           return res.redirect("/?message=server_error");
         }
 
         return res.redirect("/?message=revoked");
       });
-    } catch (error) {
-      console.error("Token revoke error:", error);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      logger.error("Token revoke - unexpected error", error);
 
       return res.redirect("/?message=revoke_error");
     }

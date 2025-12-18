@@ -1,5 +1,11 @@
 import dotenv from "dotenv";
+import pino from "pino";
 import z from "zod";
+
+const logger = pino({
+  name: "env",
+  level: "error",
+});
 
 const getEnvPath = () => {
   const nodeEnv = process.env.NODE_ENV || "development";
@@ -37,7 +43,7 @@ const getEnv = () => {
   if (!result.success) {
     const error = z.flattenError(result.error);
     const errorMessage = `Invalid environment variables: ${error}`;
-    console.error("❌", errorMessage);
+    logger.error(errorMessage);
     throw new Error(errorMessage);
   }
 
