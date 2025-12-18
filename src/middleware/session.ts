@@ -17,7 +17,7 @@ export const SESSION_NAME = "pyoshs";
 export const sessionMiddleware = session({
   store: new FileStore({
     path: path.join(__dirname, "../../sessions"),
-    ttl: 60 * 60, // 1 hour
+    ttl: 30 * 60, // 30 minutes
     retries: 2,
   }),
   secret: env.SESSION_SECRET,
