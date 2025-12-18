@@ -7,6 +7,7 @@ import {
 } from "express";
 import pino from "pino";
 import { SESSION_NAME } from "@middleware/session";
+import { env } from "@util/env";
 
 const logger = pino({
   name: "token",
@@ -65,7 +66,13 @@ tokenRouter.post(
         throw new Error(`Google revoke failed: ${response.status}`);
       }
 
-      res.clearCookie(SESSION_NAME);
+      res.clearCookie(SESSION_NAME, {
+        path: "/",
+        httpOnly: true,
+        secure: env.isProd,
+        sameSite: "strict",
+      });
+
       req.session.destroy((err) => {
         if (err) {
           logger.error("Session destroy error:", err);
