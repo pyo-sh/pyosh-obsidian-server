@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pyosh's Plugin</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/images/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/images/favicon-32x32.png"
+    />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#736599" />
+
+    <meta name="description" content="Pyosh's Plugin Service Web App" />
+    <script type="module" crossorigin src="/views/js/main.bundle.js"></script>
+    <link rel="modulepreload" crossorigin href="/views/js/navbar.i1vY3KiY.js">
+    <link rel="stylesheet" crossorigin href="/views/css/navbar.bundle.css">
+    <link rel="stylesheet" crossorigin href="/views/css/main.bundle.css">
+    <link rel="stylesheet" crossorigin href="/views/css/warning.bundle.css">
+  </head>
+  <body>
+    <div id="app">
+      <nav class="navbar">
+        <div class="nav-container">
+          <a class="logo" href="/" target="_self" rel="bookmark">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              version="1.1"
+              id="logo-light"
+              x="0px"
+              y="0px"
+              viewBox="0 0 256 256"
+              style="enable-background: new 0 0 256 256"
+              xml:space="preserve"
+              width="40"
+              height="40"
+            >
+              <g>
+                <path
+                  class="st0"
+                  d="M169.85,181.57c-0.32-0.11-0.78-0.07-1.29-0.15c-0.62-0.06-0.62-0.06-1.2-0.06c-3.19-0.04-5.81,3.65-6.28,6.62   c-0.59,3.76,2.06,5.59,5.49,5.78C173.89,194.16,177.57,184.34,169.85,181.57z"
+                />
+                <path
+                  class="st0"
+                  d="M128,30.81c-53.67,0-97.19,43.52-97.19,97.19c0,31.18,14.69,58.93,37.53,76.72   c13.82-23.13,29.59-49.69,41.98-70.3c-18.12-15.67-30.87-37.86-40.59-60.59c-1.79-4.18,2.26-13.74,6.37-16.22   c3.5-2.11,5.62,3.36,7.56,7.59c8.92,19.45,19.83,40.08,35.26,54.47l31.97-54.8c1.8-3.09,4.75-4.55,7.69-4.24   c1.69,0.12,3.21,0.55,4.92,1.65c14.53,9.41,25.4,24.78,29.28,42.43c3.51,15.99,2.05,34.39-11.95,44.16   c-13.72,9.57-32.44,6.65-46.86,0.48c-2.94-1.26-5.76-2.66-8.49-4.21c0,0.01-26.37,44.06-41.59,69.48   c13.24,6.76,28.24,10.58,44.13,10.58c53.67,0,97.19-43.52,97.19-97.19S181.67,30.81,128,30.81z M185.65,191.94   c-2.42,9.22-11.36,14.6-20.61,13.68c-9.71-0.97-17.06-8.57-15.87-18.61c1.07-9.06,8.7-17.66,18.2-17.66c0.86,0,1.78-0.08,3.28,0   c1.13,0.19,1.13,0.19,2.4,0.64C181.44,173.01,188.84,179.76,185.65,191.94z"
+                />
+                <path
+                  class="st0"
+                  d="M172.67,134.12c6.04-4.71,6.21-13.25,5.33-20.48c-1.49-12.13-7.33-23.29-15.9-31.31l-28.18,48.3   c5.07,2.77,10.54,4.9,16.47,6.22C157.57,138.45,166.42,138.99,172.67,134.12z"
+                />
+                <path
+                  class="st1"
+                  d="M128,10.39C63.05,10.39,10.39,63.05,10.39,128c0,38.63,18.63,72.9,47.39,94.34c0,0,0,0,0,0   c0,0,0.02,0.02,0.05,0.04c4.9,3.65,10.09,6.92,15.54,9.78c0,0,0,0,0,0v0c16.33,8.58,34.91,13.44,54.63,13.44   c64.95,0,117.61-52.66,117.61-117.61S192.95,10.39,128,10.39z M128,225.19c-15.89,0-30.89-3.81-44.13-10.58   c15.21-25.42,41.58-69.47,41.59-69.48c2.73,1.54,5.56,2.95,8.49,4.21c14.42,6.18,33.14,9.1,46.86-0.48   c14.01-9.77,15.47-28.17,11.95-44.16c-3.87-17.65-14.75-33.02-29.28-42.43c-1.71-1.11-3.23-1.53-4.92-1.65   c-2.94-0.3-5.88,1.15-7.69,4.24l-31.97,54.8c-15.43-14.39-26.34-35.01-35.26-54.47c-1.94-4.23-4.06-9.7-7.56-7.59   c-4.11,2.47-8.16,12.04-6.37,16.22c9.72,22.73,22.47,44.92,40.59,60.59c-12.39,20.61-28.16,47.18-41.98,70.3   C45.5,186.93,30.81,159.18,30.81,128c0-53.67,43.52-97.19,97.19-97.19s97.19,43.52,97.19,97.19S181.67,225.19,128,225.19z    M133.92,130.63l28.18-48.3c8.56,8.02,14.41,19.18,15.9,31.31c0.89,7.23,0.72,15.77-5.33,20.48c-6.25,4.87-15.1,4.33-22.27,2.74   C144.46,135.54,138.99,133.4,133.92,130.63z"
+                />
+                <path
+                  class="st1"
+                  d="M173.04,170c-1.26-0.45-1.26-0.45-2.4-0.64c-1.5-0.08-2.43,0-3.28,0c-9.5,0-17.13,8.6-18.2,17.66   c-1.19,10.04,6.17,17.64,15.87,18.61c9.25,0.92,18.2-4.46,20.61-13.68C188.84,179.76,181.44,173.01,173.04,170z M166.57,193.75   c-3.42-0.19-6.08-2.02-5.49-5.78c0.47-2.97,3.09-6.66,6.28-6.62c0.58,0.01,0.58,0.01,1.2,0.06c0.51,0.08,0.98,0.04,1.29,0.15   C177.57,184.34,173.89,194.16,166.57,193.75z"
+                />
+              </g>
+            </svg>
+            <span>Pyosh Plugin</span>
+          </a>
+          <div class="nav-menu">
+            <a href="/" class="nav-link active">홈</a>
+            <a href="/privacy-policy" class="nav-link">개인정보 처리방침</a>
+          </div>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="다크모드 전환"
+          >
+            <svg
+              class="sun-icon"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+            >
+              <circle
+                cx="10"
+                cy="10"
+                r="4"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            <svg
+              class="moon-icon"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M11.993,3a9.326,9.326,0,0,0-1.138,4.477,8.8,8.8,0,0,0,8.569,9.015c.2,0,.385-.017.576-.03A8.5,8.5,0,0,1,12.569,21,8.8,8.8,0,0,1,4,11.985,8.83,8.83,0,0,1,11.993,3Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <main class="main-content">
+        <div class="hero-section">
+          <h1 class="hero-title">Obsidian<br />Pyosh's Plugin</h1>
+          <p class="hero-description">
+            Pyosh's Plugin에서 Obsidian의 Vault를 Google Drive와 동기화할 수
+            있습니다.<br />
+            이 서버에서 Google 계정으로 로그인하여 얻은 토큰을 Pyosh's Plugin에
+            입력해 사용해주세요.<br />
+          </p>
+
+          <button class="google-login-btn" id="googleLoginBtn">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <path
+                fill="#4285F4"
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+              />
+              <path
+                fill="#34A853"
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+              />
+              <path
+                fill="#FBBC05"
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+              />
+              <path
+                fill="#EA4335"
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+              />
+            </svg>
+            <span>Google 계정으로 로그인</span>
+          </button>
+        </div>
+
+        <div id="message" class="message" style="display: none">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle
+              cx="10"
+              cy="10"
+              r="8"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M10 6V10M10 14H10.01"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+          <span id="messageText"></span>
+        </div>
+
+        <!-- 주의사항 섹션 -->
+        <section class="warning-section">
+          <div class="warning-header">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path
+                d="M14 3L3 24h22L14 3z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M14 10v5M14 19h.01"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            <h2>사용 전 필독 사항</h2>
+          </div>
+
+          <p class="warning-intro">
+            Pyosh's Plugin을 안전하게 사용하기 위해 아래 내용을 반드시
+            확인해주세요.
+          </p>
+
+          <div class="warning-items">
+            <div class="warning-item" data-warning="1">
+              <div class="warning-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div class="warning-content">
+                <h3>비공식 플러그인</h3>
+                <p>
+                  이 플러그인은
+                  <strong>
+                    Obsidian 개발사가 공식적으로 유지 관리하는 플러그인이
+                    아닙니다.
+                  </strong>
+                  <br />
+                  단순히 몇 가지 기능을 추가하기 위해 개인이 제작한 것입니다.
+                </p>
+              </div>
+            </div>
+
+            <div class="warning-item" data-warning="2">
+              <div class="warning-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div class="warning-content">
+                <h3>보안</h3>
+                <p>
+                  <strong>
+                    서버에서는 당신의 Token이나 Google Drive 데이터를 따로
+                    저장하지 않습니다.
+                  </strong>
+                  <br />
+                  서버는 액세스 키를 교환하는 용도로만 사용되며 사용자 데이터는
+                  저희 서버를 거치지 않습니다.
+                  <br />
+                  Token을 발급받은 후 다른 사람에게 노출되지 않도록
+                  조심해주세요.
+                </p>
+              </div>
+            </div>
+
+            <div class="warning-item" data-warning="3">
+              <div class="warning-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div class="warning-content">
+                <h3>오픈소스 확인</h3>
+                <p>
+                  원하시면 이 웹사이트의 소스 코드를
+                  <a
+                    href="https://github.com/pyo-sh/pyosh-obsidian-server"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="github-link"
+                  >
+                    여기
+                  </a>
+                  에서 확인하실 수 있습니다.
+                  <br />
+                  데이터 보안에 대한 것을 직접 확인하고 싶으시다면 GitHub
+                  저장소를 모두 살펴보시기 바랍니다.
+                </p>
+              </div>
+            </div>
+
+            <div class="warning-item critical" data-warning="4">
+              <div class="warning-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div class="warning-content">
+                <h3>데이터 백업 필수</h3>
+                <p>
+                  <strong class="critical-text">
+                    처음으로 동기화 기능을 실행할 때 예기치 못한 오류가 발생할
+                    수 있습니다.
+                  </strong>
+                  <br />
+                  사용에 따른 데이터 소실 위험은 사용자 본인이 감수해야 합니다.
+                  <br />
+                  <strong class="critical-text">
+                    반드시 볼트를 백업한 뒤 동기화해주세요.
+                  </strong>
+                </p>
+                <p class="sub-warning">
+                  이 플러그인은 <code>.obsidian</code> 설정 폴더도 동기화합니다.
+                </p>
+              </div>
+            </div>
+
+            <div class="warning-item critical" data-warning="5">
+              <div class="warning-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div class="warning-content">
+                <h3>수동 파일 조작 유의</h3>
+                <p>
+                  <strong class="critical-text">
+                    다른 Google Drive 동기화 플러그인과 함께 사용하지 마세요.
+                  </strong>
+                  <br />
+                  해당 플러그인은 외부에서 변경된 파일들을 인식할 수 없으므로
+                  기능이 제대로 작동하지 않아 데이터 손실이 발생할 수 있습니다.
+                </p>
+                <p class="sub-warning">
+                  Obsidian 앱 외부에서 파일을 변경할 때 주의하세요.
+                  <br />
+                  이 플러그인은 Obsidian API를 통해 파일 변경사항을 추적합니다.
+                  <br />
+                  따라서 앱 외부에서 파일을 직접 수정하면 플러그인이 이러한
+                  변경을 감지하지 못할 수 있습니다.
+                </p>
+                <p class="sub-warning">
+                  Obsidian이 열려 있는 상태에서 외부 편집기로 파일을 변경한
+                  경우, 변경사항 추적이 대부분 정상 작동합니다.
+                  <br />
+                  하지만 가장 안전한 방법은 항상 Obsidian 앱을 통해 파일을
+                  수정하는 것입니다.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="warning-footer">
+            <p>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <circle
+                  cx="10"
+                  cy="10"
+                  r="8"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M10 6v4M10 14h.01"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+              위의 모든 주의사항을 충분히 이해하신 후 플러그인을 사용해주세요.
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-container">
+          <p>&copy; 2025. pyo-sh. all rights reserved.</p>
+          <p class="footer-source">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <path
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+              />
+            </svg>
+            <a
+              href="https://github.com/pyo-sh/pyosh-obsidian-server"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub에서 소스코드 보기
+            </a>
+          </p>
+          <p class="footer-source">
+            <a href="/privacy-policy" target="self" rel="bookmark">
+              Privacy Policy
+            </a>
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
