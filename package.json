@@ -16,15 +16,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "connect-mongo": "^6.0.0",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "express-rate-limit": "^8.2.1",
     "express-session": "^1.18.2",
     "helmet": "^8.1.0",
     "http-status-codes": "^2.3.0",
+    "mongoose": "^9.0.2",
     "pino": "^10.1.0",
     "pino-http": "^11.0.0",
-    "session-file-store": "^1.5.0",
     "zod": "^4.1.13"
   },
   "devDependencies": {

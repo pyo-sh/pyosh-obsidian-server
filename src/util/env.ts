@@ -35,6 +35,8 @@ export const envSchema = z.object({
   GOOGLE_CLIENT_SECRET: z.string().min(1),
   GOOGLE_REDIRECT_URI: z.string().min(1),
   SESSION_SECRET: z.string().min(1),
+  MONGODB_URI: z.string().min(1),
+  MONGODB_COLLECTION_NAME: z.string().min(1),
 });
 
 const getEnv = () => {

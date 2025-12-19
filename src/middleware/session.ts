@@ -1,6 +1,5 @@
 import session from "express-session";
-import path from "path";
-import SessionFileStore from "session-file-store";
+import MongoStore from "connect-mongo";
 import { env } from "@util/env";
 
 declare module "express-session" {
@@ -10,15 +9,14 @@ declare module "express-session" {
     ip: string | undefined;
   }
 }
-
-const FileStore = SessionFileStore(session);
-
+const MAINTAIN_TIME = 30 * 60; // 30 minutes
 export const SESSION_NAME = "pyoshs";
 export const sessionMiddleware = session({
-  store: new FileStore({
-    path: path.join(__dirname, "../../sessions"),
-    ttl: 30 * 60, // 30 minutes
-    retries: 2,
+  store: MongoStore.create({
+    mongoUrl: env.MONGODB_URI,
+    collectionName: env.MONGODB_COLLECTION_NAME,
+    ttl: MAINTAIN_TIME,
+    autoRemove: "native",
   }),
   secret: env.SESSION_SECRET,
   resave: false,
@@ -27,7 +25,7 @@ export const sessionMiddleware = session({
     httpOnly: true,
     secure: env.NODE_ENV === "production",
     sameSite: "strict",
-    maxAge: 30 * 60 * 1000, // 30 minutes
+    maxAge: MAINTAIN_TIME * 1000,
   },
   name: SESSION_NAME,
 });
