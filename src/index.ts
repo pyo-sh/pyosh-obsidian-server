@@ -17,6 +17,9 @@ const logger = pino({
 });
 const app: Express = express();
 
+// Trust Proxy for deployments
+app.set("trust proxy", 1);
+
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

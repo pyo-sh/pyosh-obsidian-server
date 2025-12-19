@@ -10,7 +10,7 @@ declare module "express-session" {
   }
 }
 const MAINTAIN_TIME = 30 * 60; // 30 minutes
-export const SESSION_NAME = "pyoshs";
+export const SESSION_NAME = "pyosh.sid";
 export const sessionMiddleware = session({
   store: MongoStore.create({
     mongoUrl: env.MONGODB_URI,
@@ -24,8 +24,9 @@ export const sessionMiddleware = session({
   cookie: {
     httpOnly: true,
     secure: env.NODE_ENV === "production",
-    sameSite: "strict",
+    sameSite: "none",
     maxAge: MAINTAIN_TIME * 1000,
   },
   name: SESSION_NAME,
+  proxy: true,
 });
