@@ -1,6 +1,6 @@
 {
   "name": "pyosh-obsidian-server",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A lightweight Express server to support Obsidian plugin integration.",
   "main": "build/index.js",
   "scripts": {
