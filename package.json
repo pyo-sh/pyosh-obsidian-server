@@ -1,19 +1,18 @@
 {
   "name": "pyosh-obsidian-server",
-  "version": "1.0.0",
-  "description": "A lightweight Express server to support Obsidian plugin integration.",
+  "version": "1.1.0",
+  "description": "A lightweight Express server to support pyosh's Obsidian plugin integration.",
   "main": "build/index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "dev:front": "vite --configLoader runner",
-    "build": "npm run build:front && npm run build:back",
+    "build": "tsc && tsc-alias",
+    "build:both": "npm run build:front && npm run build:back",
     "build:front": "vite build",
-    "build:back": "tsc && tsc-alias",
     "start": "cross-env NODE_ENV=production node build/index.js",
     "lint": "eslint . --ext .ts"
   },
-  "keywords": [],
-  "author": "",
+  "author": "pyo-sh",
   "license": "ISC",
   "dependencies": {
     "connect-mongo": "^6.0.0",
