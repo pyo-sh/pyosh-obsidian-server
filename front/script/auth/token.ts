@@ -77,9 +77,16 @@ export async function setupTokenDisplay(): Promise<void> {
   try {
     const { accessToken, refreshToken } = await getToken();
     const elements = getTokenElements();
+    const loadingDisplay = document.getElementById("loadingSection");
+    const successDisplay = document.getElementById("successSection");
 
     if (!elements) {
       return;
+    }
+
+    if (loadingDisplay && successDisplay && accessToken && refreshToken) {
+      loadingDisplay.style.display = "none";
+      successDisplay.style.display = "block";
     }
 
     displayTokenContent(elements, accessToken, refreshToken);
