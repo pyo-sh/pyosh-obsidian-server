@@ -1,7 +1,7 @@
 export const getToken = async () => {
   const res = await fetch("/api/token", {
     method: "GET",
-    credentials: "same-origin",
+    credentials: "include",
   });
 
   const data = await res.json();
@@ -20,6 +20,6 @@ export const getToken = async () => {
 export const destroyToken = () => {
   return fetch("/api/token/destroy", {
     method: "POST",
-    credentials: "same-origin",
+    credentials: "include",
   });
 };
