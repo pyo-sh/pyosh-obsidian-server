@@ -98,7 +98,7 @@
   display: none;
 }
 
-@media screen and (max-width: 590px) {
+@media screen and (max-width: 768px) {
   .logo > span {
     display: none;
   }
