@@ -37,7 +37,7 @@ app.use("/", express.static(path.join(__dirname, "..", "public")));
 app.use("/api", apiRouter);
 
 // Frontend Routes
-const viewPaths = ["/", "/privacy-policy", "/dashboard"];
+const viewPaths = ["/", "/dashboard", "/privacy-policy", "/terms-of-service"];
 const viewMiddleware = createViewMiddleware(viewPaths);
 
 // In Dev: Front Vite middleware

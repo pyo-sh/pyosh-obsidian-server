@@ -9,6 +9,7 @@ const __dirname = resolve(fileURLToPath(import.meta.url)).replace(
 );
 const mode = process.env.NODE_ENV || "development";
 const isDev = mode === "development";
+const inputPath = join(__dirname, "/front/page");
 
 export default defineConfig({
   root: "front",
@@ -18,9 +19,10 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: join(__dirname, "/front/page/index.html"),
-        "privacy-policy": join(__dirname, "/front/page/privacy-policy.html"),
-        dashboard: join(__dirname, "/front/page/dashboard.html"),
+        main: join(inputPath, "/index.html"),
+        dashboard: join(inputPath, "/dashboard.html"),
+        "privacy-policy": join(inputPath, "/privacy-policy.html"),
+        "terms-of-service": join(inputPath, "/terms-of-service.html"),
       },
       output: {
         entryFileNames: "js/[name].bundle.js",

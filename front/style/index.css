@@ -15,33 +15,7 @@
 .hero-description {
   font-size: 1.25rem;
   color: var(--text-secondary);
-  margin-bottom: 3rem;
-}
-
-.google-login-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-  background-color: var(--surface);
-  color: var(--text-primary);
-  border: 2px solid var(--border-color);
-  padding: 1rem 2rem;
-  border-radius: 0.75rem;
-  font-size: 1.125rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px var(--shadow);
-}
-
-.google-login-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 12px var(--shadow-hover);
-  border-color: var(--primary-color);
-}
-
-.google-login-btn:active {
-  transform: translateY(0);
+  margin-bottom: 2rem;
 }
 
 .message {
